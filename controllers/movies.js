@@ -71,24 +71,3 @@ module.exports.deleteMovie = (req, res, next) => {
       } else { next(err); }
     });
 };
-/*
-module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.id)
-    .then((movie) => {
-      if (!movie) {
-        throw new NotFoundError('Фильм не найден');
-      }
-      if (movie.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Доступ запрещен: попытка удалить чужой фильм');
-      }
-      return movie.remove()
-        .then(() => res.status(200).send({ message: 'Фильм успешно удален' }));
-    })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        next(new BadRequestError('Передан невалидный id'));
-      } else {
-        next(err);
-      }
-    });
-};*/
