@@ -1,3 +1,4 @@
 # movies-explorer-api
-# api.moviesapp.nomoredomains.sbs
-# IP 51.250.15.164
+# https://api.moviesapp.nomoredomains.sbs/
+# http://api.moviesapp.nomoredomains.sbs/
+# IP 84.252.140.41
