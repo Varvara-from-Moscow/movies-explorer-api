@@ -54,12 +54,6 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-module.exports.getUsers = (req, res, next) => {
-  User.find({})
-    .then((users) => res.send({ data: users }))
-    .catch((err) => next(err));
-};
-
 module.exports.getСurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
@@ -86,11 +80,13 @@ module.exports.updateСurrentUser = (req, res, next) => {
     }).catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new CastError('Введены некорректные данные'));
+      }
+      if (err.code === 11000) {
+        next(new ConflictError('Пользователь с таким адресом уже существует'));
       } else { next(err); }
     });
 };
 
-module.exports.logout = (req, res, next) => {
-  res.clearCookie('jwt');
-  next();
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt').send({ message: 'Выход' });
 };

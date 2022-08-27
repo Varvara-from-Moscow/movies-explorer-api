@@ -5,7 +5,8 @@ const CastError = require('../errors/CastError');
 const ForbiddenError = require('../errors/ForbiddenError');
 
 module.exports.getMovies = (req, res, next) => {
-  Movie.find({})
+  const owner = req.user._id;
+  Movie.find({ owner })
     .then((movies) => res.send({ data: movies }))
     .catch((err) => {
       next(err);
@@ -44,8 +45,7 @@ module.exports.createMovie = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new CastError('Введены некорректные данные'));
-      }
-      next(err);
+      } else { next(err); }
     });
 };
 
