@@ -29,12 +29,10 @@ module.exports.createUser = (req, res, next) => {
       id: userData._id,
       name: userData.name,
     }))
-    // eslint-disable-next-line consistent-return
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new CastError('Введены некорректные данные'));
-      }
-      if (err.code === 11000) {
+        next(new CastError('Введены некорректные данные'));
+      } else if (err.code === 11000) {
         next(new ConflictError('Такой Email уже существует'));
       } else { next(err); }
     });
@@ -80,8 +78,7 @@ module.exports.updateСurrentUser = (req, res, next) => {
     }).catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new CastError('Введены некорректные данные'));
-      }
-      if (err.code === 11000) {
+      } else if (err.code === 11000) {
         next(new ConflictError('Пользователь с таким адресом уже существует'));
       } else { next(err); }
     });

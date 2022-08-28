@@ -1,5 +1,5 @@
-.editorconfig
-.eslintrc
+//.editorconfig
+//.eslintrc
 .git
 //.env
 node_modules
