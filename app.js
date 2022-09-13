@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const { errors } = require('celebrate');
 const { router } = require('./routes');
 const handleErrors = require('./middlewares/errors');
@@ -21,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(requestLogger);
+
+app.use(cors());
 
 app.get('/crash-test', () => {
   setTimeout(() => {
