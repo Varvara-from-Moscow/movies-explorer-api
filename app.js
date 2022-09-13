@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-const cors = require('cors');
 const { router } = require('./routes');
 const handleErrors = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -22,16 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(requestLogger);
-
-app.use(cors({
-  credentials: true,
-  origin: [
-    'http://localhost:3001',
-    'http://localhost:3000',
-    'https://localhost:3001',
-    'https://localhost:3000',
-  ],
-}));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
