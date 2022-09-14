@@ -1,6 +1,8 @@
 const allowedCors = [
   'http://localhost:3000',
   'https://localhost:3000',
+  'http://moviesapp.nomoredomains.sbs',
+  'https://moviesapp.nomoredomains.sbs',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';

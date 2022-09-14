@@ -23,7 +23,17 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.options('*', cors());
+app.use(cors({
+  credentials: true,
+  origin: [
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'http://localhost:3001',
+    'https://localhost:3001',
+    'http://moviesapp.nomoredomains.sbs',
+    'https://moviesapp.nomoredomains.sbs',
+  ],
+}));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
