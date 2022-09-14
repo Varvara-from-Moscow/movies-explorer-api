@@ -9,7 +9,7 @@ const validateURL = (value) => {
 
 const {
   Mongodb = 'mongodb://localhost:27017/moviesdb',
-  PORT = 3000,
+  PORT = 3001,
 } = process.env;
 
 module.exports = {
