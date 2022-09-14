@@ -24,11 +24,17 @@ module.exports.createUser = (req, res, next) => {
       password: hash,
       name,
     }))
-    .then((userData) => res.status(201).send({
+    .then((user) => {
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'SECRET_KEY', { expiresIn: '7d' });
+      return res
+        .cookie('jwt', token, { httpOnly: true, sameSite: true })
+        .send({ token });
+    })
+   /* .then((userData) => res.status(201).send({
       email: userData.email,
       id: userData._id,
       name: userData.name,
-    }))
+    }))*/
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new CastError('Введены некорректные данные'));
