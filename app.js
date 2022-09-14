@@ -23,15 +23,7 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.use(cors({
-  credentials: true,
-  origin: [
-    'http://localhost:3001',
-    'http://localhost:3000',
-    'https://localhost:3001',
-    'https://localhost:3000',
-  ],
-}));
+app.options('*', cors());
 
 app.get('/crash-test', () => {
   setTimeout(() => {
