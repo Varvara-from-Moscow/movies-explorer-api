@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { validateURL } = require('../utils/const');
+const { Reg } = require('../utils/const');
 
 const movieSchema = new mongoose.Schema({
 
@@ -26,17 +26,17 @@ const movieSchema = new mongoose.Schema({
   image: {
     type: String,
     required: [true, 'Поле, обязательно для заполнения'],
-    validate: validateURL,
+    validate: Reg,
   },
   trailerLink: {
     type: String,
     required: [true, 'Поле, обязательно для заполнения'],
-    validate: validateURL,
+    validate: Reg,
   },
   thumbnail: {
     type: String,
     required: [true, 'Поле, обязательно для заполнения'],
-    validate: validateURL,
+    validate: Reg,
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

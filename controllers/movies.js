@@ -44,6 +44,7 @@ module.exports.createMovie = (req, res, next) => {
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
+        console.log(err);
         next(new CastError('Введены некорректные данные'));
       } else { next(err); }
     });
